@@ -1,16 +1,17 @@
 {
   "hosting": {
-    "public": "out",
-    "ignore": [
-      "firebase.json",
-      "**/.*",
-      "**/node_modules/**"
-    ],
+    "public": "public",
+    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
     "rewrites": [
       {
         "source": "**",
-        "destination": "/index.html"
+        "function": "nextjsFunc"
       }
     ]
+  },
+  "functions": {
+    "source": ".",
+    "predeploy": ["npm install --global yarn", "yarn install", "yarn build"],
+    "runtime": "nodejs14"
   }
 }
