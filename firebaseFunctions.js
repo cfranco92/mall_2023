@@ -1,4 +1,4 @@
-import { join } from "path";
+const { join } = require("path");
 const { https } = require("firebase-functions");
 const { default: next } = require("next");
 
@@ -12,6 +12,6 @@ const nextjsServer = next({
 });
 const nextjsHandle = nextjsServer.getRequestHandler();
 
-exports.nextjsFunc = https.onRequest((req: Request, res: Response) => {
+exports.nextjsFunc = https.onRequest((req, res) => {
   return nextjsServer.prepare().then(() => nextjsHandle(req, res));
 });

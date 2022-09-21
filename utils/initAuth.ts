@@ -1,4 +1,3 @@
-// ./initAuth.js
 import { init } from "next-firebase-auth";
 
 const initAuth = () => {
@@ -13,11 +12,11 @@ const initAuth = () => {
     onLogoutRequestError: (err) => {
       console.error(err);
     },
-    // firebaseAuthEmulatorHost: "localhost:9099",
     firebaseAdminInitConfig: {
       credential: {
         projectId: "mall-2023",
-        clientEmail: "example-abc123@my-example-app.iam.gserviceaccount.com",
+        clientEmail:
+          "firebase-adminsdk-clgxc@mall-2023.iam.gserviceaccount.com",
         // The private key must not be accessible on the client side.
         privateKey: process.env.FIREBASE_PRIVATE_KEY || "",
       },
@@ -28,15 +27,10 @@ const initAuth = () => {
     firebaseClientInitConfig: {
       apiKey: "AIzaSyDxVvnXoUP0rDa-wswj2x7KAtfUW9qln6k",
       authDomain: "mall-2023.firebaseapp.com",
-      databaseURL: "https://mall-2023.firebaseio.com",
       projectId: "mall-2023",
-      storageBucket: "mall-2023.appspot.com",
-      messagingSenderId: "68977830436",
-      appId: "1:68977830436:web:89a50be50972782cd746b1",
-      measurementId: "G-VKVEDGXL22",
     },
     cookies: {
-      name: "ExampleApp", // required
+      name: "mall-2023",
       // Keys are required unless you set `signed` to `false`.
       // The keys cannot be accessible on the client side.
       keys: [
@@ -49,7 +43,7 @@ const initAuth = () => {
       path: "/",
       sameSite: "strict",
       secure: true, // set this to false in local (non-HTTPS) development
-      signed: false,
+      signed: true,
     },
     onVerifyTokenError: (err) => {
       console.error(err);

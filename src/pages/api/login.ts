@@ -1,7 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
 
 import initAuth from "../../../utils/initAuth"; // the module you created above
-// ./pages/api/login
 import { setAuthCookies } from "next-firebase-auth";
 
 initAuth();
