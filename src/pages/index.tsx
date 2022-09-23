@@ -1,8 +1,4 @@
-import {
-  AuthAction,
-  withAuthUser,
-  withAuthUserTokenSSR,
-} from "next-firebase-auth";
+import { AuthAction, withAuthUserTokenSSR } from "next-firebase-auth";
 
 import Head from "next/head";
 import Image from "next/image";
@@ -41,3 +37,5 @@ const Home: NextPage = () => {
 export const getServerSideProps = withAuthUserTokenSSR({
   whenUnauthed: AuthAction.REDIRECT_TO_LOGIN,
 })();
+
+export default Home;
