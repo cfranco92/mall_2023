@@ -43,8 +43,8 @@ const initAuth = () => {
       path: "/",
       sameSite: "strict",
       secure: true, // set this to false in local (non-HTTPS) development
-      signed: true,
-      // signed: false,
+      // signed: true,
+      signed: false,
     },
     onVerifyTokenError: (err) => {
       console.error(err);
