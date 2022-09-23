@@ -2,7 +2,10 @@ const { join } = require("path");
 const { https } = require("firebase-functions");
 const { default: next } = require("next");
 
-const nextjsDistDir = join("src", require("./src/next.config.js").distDir);
+const nextjsDistDir = join(
+  "src",
+  require("./src/next.config.js/index.js.js").distDir
+);
 
 const nextjsServer = next({
   dev: false,
