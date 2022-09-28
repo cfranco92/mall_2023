@@ -1,10 +1,5 @@
 import React from "react";
-import {
-  AuthAction,
-  useAuthUser,
-  withAuthUser,
-  withAuthUserTokenSSR,
-} from "next-firebase-auth";
+import { AuthAction, useAuthUser, withAuthUser } from "next-firebase-auth";
 import { Box, Button } from "@mui/material";
 
 import Image from "next/image";
@@ -37,9 +32,6 @@ const Perfil = () => {
     </Box>
   );
 };
-export const getServerSideProps = withAuthUserTokenSSR({
-  whenUnauthed: AuthAction.REDIRECT_TO_LOGIN,
-})();
 
 export default withAuthUser({
   whenUnauthedAfterInit: AuthAction.REDIRECT_TO_LOGIN,

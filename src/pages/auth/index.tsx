@@ -1,10 +1,6 @@
-import { useEffect, useState } from "react";
-import {
-  AuthAction,
-  withAuthUser,
-  withAuthUserTokenSSR,
-} from "next-firebase-auth";
+import { AuthAction, withAuthUser } from "next-firebase-auth";
 import { Box, CircularProgress, Typography } from "@mui/material";
+import { useEffect, useState } from "react";
 
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
 import firebase from "firebase/app";
@@ -63,12 +59,9 @@ const Auth = () => {
   );
 };
 
-export const getServerSideProps = withAuthUserTokenSSR({
-  whenAuthed: AuthAction.REDIRECT_TO_APP,
-})();
-
 export default withAuthUser({
   whenAuthed: AuthAction.REDIRECT_TO_APP,
   whenUnauthedBeforeInit: AuthAction.SHOW_LOADER,
+  whenUnauthedAfterInit: AuthAction.RENDER,
   LoaderComponent: MyLoader,
 })(Auth);
