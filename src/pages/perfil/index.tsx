@@ -1,27 +1,15 @@
-import {
-  AuthAction,
-  useAuthUser,
-  withAuthUser,
-  withAuthUserTokenSSR,
-} from "next-firebase-auth";
+import React from "react";
+import { AuthAction, useAuthUser, withAuthUser } from "next-firebase-auth";
 import { Box, Button } from "@mui/material";
-import React, { useEffect } from "react";
 
 import Image from "next/image";
+import styles from "./styles.module.css";
 
 const Perfil = () => {
   const AuthUser = useAuthUser();
 
   return (
-    <Box
-      sx={{
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "center",
-        height: "100vh",
-      }}
-    >
+    <Box className={styles.root}>
       {AuthUser.photoURL && (
         <Image
           alt="Profile picture"
@@ -35,7 +23,7 @@ const Perfil = () => {
       <p>Tu email es {AuthUser.email ? AuthUser.email : "unknown"}.</p>
 
       {AuthUser.signOut && (
-        <Box sx={{ marginTop: "36px" }}>
+        <Box className={styles.buttonContainer}>
           <Button variant="contained" onClick={AuthUser.signOut}>
             Cerrar Sesión
           </Button>
@@ -44,11 +32,6 @@ const Perfil = () => {
     </Box>
   );
 };
-
-export const getServerSideProps = withAuthUserTokenSSR({
-  whenUnauthed: AuthAction.REDIRECT_TO_LOGIN,
-  // authPageURL: "/login/",
-})();
 
 export default withAuthUser({
   whenUnauthedAfterInit: AuthAction.REDIRECT_TO_LOGIN,

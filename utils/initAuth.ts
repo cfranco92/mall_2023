@@ -33,18 +33,14 @@ const initAuth = () => {
       name: "mall-2023",
       // Keys are required unless you set `signed` to `false`.
       // The keys cannot be accessible on the client side.
-      keys: [
-        process.env.COOKIE_SECRET_CURRENT,
-        process.env.COOKIE_SECRET_PREVIOUS,
-      ],
+      keys: ["mall-2023-current", "mall-2023-previous"],
       httpOnly: true,
       maxAge: 12 * 60 * 60 * 24 * 1000, // twelve days
       overwrite: true,
       path: "/",
-      sameSite: "strict",
+      sameSite: "lax",
       secure: true, // set this to false in local (non-HTTPS) development
-      // signed: true,
-      signed: false,
+      signed: true,
     },
     onVerifyTokenError: (err) => {
       console.error(err);

@@ -1,20 +1,15 @@
-// import "firebase/compat/auth";
-// import "firebase/auth";
-
 import { AuthAction, withAuthUser } from "next-firebase-auth";
 import { Box, CircularProgress, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
 import firebase from "firebase/app";
+import styles from "./styles.module.css";
 
 const firebaseAuthConfig = {
   signInFlow: "popup",
-  // Auth providers
-  // https://github.com/firebase/firebaseui-web#configure-oauth-providers
   signInOptions: [
     {
-      // provider: firebase.auth.EmailAuthProvider.PROVIDER_ID,
       provider: firebase.auth.GoogleAuthProvider.PROVIDER_ID,
       requireDisplayName: false,
     },
@@ -35,15 +30,7 @@ const firebaseAuthConfig = {
 };
 
 const MyLoader = () => (
-  <Box
-    sx={{
-      display: "flex",
-      flexDirection: "column",
-      justifyContent: "center",
-      alignItems: "center",
-      height: "100vh",
-    }}
-  >
+  <Box className={styles.root}>
     <CircularProgress />
   </Box>
 );
@@ -58,16 +45,8 @@ const Auth = () => {
   }, []);
 
   return (
-    <Box
-      sx={{
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "center",
-        height: "100vh",
-      }}
-    >
-      <Typography variant="h2" color="initial" sx={{ marginBottom: "36px" }}>
+    <Box className={styles.root}>
+      <Typography variant="h2" color="initial" className={styles.typography}>
         Nanusnet
       </Typography>
       {renderAuth ? (
