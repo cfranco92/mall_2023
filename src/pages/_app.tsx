@@ -10,8 +10,11 @@ import { CacheProvider, EmotionCache } from "@emotion/react";
 import { CssBaseline, ThemeProvider, createTheme } from "@mui/material";
 
 import type { AppProps } from "next/app";
-import createEmotionCache from "../../utility/createEmotionCache";
-import lightThemeOptions from "../../styles/theme/lightThemeOptions";
+import createEmotionCache from "../../utils/createEmotionCache";
+import initAuth from "../../utils/initAuth"; // the module you created above
+import theme from "../../styles/theme";
+
+initAuth();
 
 interface MyAppProps extends AppProps {
   emotionCache?: EmotionCache;
@@ -19,14 +22,12 @@ interface MyAppProps extends AppProps {
 
 const clientSideEmotionCache = createEmotionCache();
 
-const lightTheme = createTheme(lightThemeOptions);
-
 const MyApp: React.FunctionComponent<MyAppProps> = (props) => {
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
 
   return (
     <CacheProvider value={emotionCache}>
-      <ThemeProvider theme={lightTheme}>
+      <ThemeProvider theme={theme}>
         <CssBaseline />
         <Component {...pageProps} />
       </ThemeProvider>
